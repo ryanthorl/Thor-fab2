@@ -1,0 +1,130 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import plasmaImg from "../assets/service-plasma.jpg";
+import weldImg from "../assets/service-welding.jpg";
+import powderImg from "../assets/service-powder.jpg";
+
+export const Route = createFileRoute("/services")({
+  head: () => ({
+    meta: [
+      { title: "Services | Thor Fabrication — CNC Plasma, Welding, Powder Coating" },
+      { name: "description", content: "CNC plasma cutting, custom fabrication, and in-house powder coating. Simple, repeatable pricing. No subcontracting." },
+      { property: "og:title", content: "Services | Thor Fabrication" },
+      { property: "og:description", content: "CNC plasma cutting, custom fabrication, and in-house powder coating." },
+    ],
+  }),
+  component: Services,
+});
+
+const services = [
+  {
+    img: plasmaImg,
+    title: "CNC Plasma Cutting",
+    tag: "01 / Cut",
+    desc: "Precision cutting of sheet and plate steel, aluminum, and other metals from digital designs (DXF/DWG). Custom parts, signage, brackets, and components — built to spec from the file up.",
+    bullets: ["Sheet & plate steel, aluminum, more", "DXF/DWG files welcome", "Tight tolerances, repeatable parts", "Design help if you don't have a file"],
+    price: "5× material cost",
+    priceNote: "Bundles machine time, consumables, and labor into one simple multiplier.",
+  },
+  {
+    img: weldImg,
+    title: "Custom Fabrication",
+    tag: "02 / Build",
+    desc: "Design-build and welding of custom pieces — gates, fencing, flower stands, railings, furniture and ornamental or functional steelwork. Bring a sketch, a Pinterest board, or a finished file.",
+    bullets: ["Driveway & garden gates", "Railings, stairs, brackets", "Flower stands & decorative pieces", "Furniture & one-off custom builds"],
+    price: "$100 / shop hour",
+    priceNote: "Covers design/build labor, welding, and finishing time.",
+  },
+  {
+    img: powderImg,
+    title: "Powder Coating",
+    tag: "03 / Finish",
+    desc: "In-house surface prep and powder coat finishing for corrosion resistance and custom color or texture. Available as part of a full build — or as a standalone service for pieces fabricated elsewhere.",
+    bullets: ["In-house prep & finishing", "Wide color & texture options", "Backed by Columbia & Prismatic Powders", "Bring your own parts welcome"],
+    price: "$100 / shop hour",
+    priceNote: "Standalone coating jobs welcome — no fabrication required.",
+  },
+];
+
+function Services() {
+  return (
+    <>
+      <section className="pt-40 pb-16 px-6 relative">
+        <div className="absolute inset-0 bg-grid opacity-[0.1]" />
+        <div className="mx-auto max-w-7xl relative">
+          <div className="font-display text-xs tracking-[0.3em] text-primary mb-4">/ CAPABILITIES</div>
+          <h1 className="font-display text-6xl md:text-8xl text-foreground leading-[0.95] max-w-4xl">
+            Cut. Build. <span className="text-primary">Finish.</span>
+          </h1>
+          <p className="mt-8 text-lg text-muted-foreground max-w-2xl">
+            Three integrated stages of production. Buy them bundled as a complete project, or à la carte when you only need one.
+          </p>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24">
+        <div className="mx-auto max-w-7xl space-y-6">
+          {services.map((s, i) => (
+            <div key={s.title} className={`grid lg:grid-cols-2 gap-0 bg-card border border-border overflow-hidden cut-corner ${i % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""}`}>
+              <div className="aspect-[4/3] lg:aspect-auto overflow-hidden">
+                <img src={s.img} alt={s.title} loading="lazy" width={1200} height={900} className="w-full h-full object-cover" />
+              </div>
+              <div className="p-10 lg:p-14 flex flex-col justify-center">
+                <div className="font-display text-xs tracking-[0.3em] text-primary mb-3">{s.tag}</div>
+                <h2 className="font-display text-4xl md:text-5xl text-foreground">{s.title}</h2>
+                <p className="mt-5 text-muted-foreground leading-relaxed">{s.desc}</p>
+                <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {s.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-sm text-foreground">
+                      <span className="text-primary mt-1">▸</span>{b}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 pt-6 border-t border-border">
+                  <div className="font-display text-xs tracking-[0.2em] text-muted-foreground">PRICING</div>
+                  <div className="mt-2 flex items-baseline gap-3 flex-wrap">
+                    <span className="font-display text-3xl text-primary">{s.price}</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2">{s.priceNote}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WORKFLOW */}
+      <section className="py-24 px-6 bg-card border-y border-border">
+        <div className="mx-auto max-w-7xl">
+          <div className="font-display text-xs tracking-[0.3em] text-primary mb-3">/ HOW IT WORKS</div>
+          <h2 className="font-display text-5xl text-foreground mb-12">From quote to install.</h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+            {[
+              { n: "01", t: "Quote", d: "Send a file, sketch, or photo. We review and price it." },
+              { n: "02", t: "Material", d: "We source steel and stock to spec." },
+              { n: "03", t: "Cut", d: "CNC plasma cuts every part with precision." },
+              { n: "04", t: "Build", d: "Weld, fabricate, and assemble in-shop." },
+              { n: "05", t: "Finish", d: "Prep, powder coat, QC, and deliver." },
+            ].map((step) => (
+              <div key={step.n} className="relative">
+                <div className="font-display text-5xl text-primary/30 group-hover:text-primary">{step.n}</div>
+                <h3 className="font-display text-xl text-foreground mt-2">{step.t}</h3>
+                <p className="text-sm text-muted-foreground mt-2">{step.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="font-display text-5xl md:text-6xl text-foreground">Ready to start a job?</h2>
+          <p className="mt-6 text-muted-foreground text-lg">Tell us about your project. We'll quote it quickly and honestly.</p>
+          <Link to="/contact" className="mt-10 inline-flex items-center gap-3 bg-primary px-10 py-5 font-display tracking-widest text-primary-foreground hover:brightness-110 transition cut-corner">
+            Get a Quote <span>→</span>
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

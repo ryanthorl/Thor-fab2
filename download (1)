@@ -1,0 +1,115 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import shopImg from "../assets/about-shop.jpg";
+
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About | Thor Fabrication — Craftsmanship Under One Roof" },
+      { name: "description", content: "Thor Fabrication is a hands-on metal fabrication shop combining CNC plasma cutting, welding, and in-house powder coating — no stage subcontracted out." },
+      { property: "og:title", content: "About | Thor Fabrication" },
+      { property: "og:description", content: "Hands-on metal fabrication: cut, weld, finish — all in one shop." },
+    ],
+  }),
+  component: About,
+});
+
+function About() {
+  return (
+    <>
+      <section className="pt-40 pb-16 px-6 relative">
+        <div className="absolute inset-0 bg-grid opacity-[0.1]" />
+        <div className="mx-auto max-w-7xl relative">
+          <div className="font-display text-xs tracking-[0.3em] text-primary mb-4">/ ABOUT</div>
+          <h1 className="font-display text-6xl md:text-8xl text-foreground leading-[0.95] max-w-4xl">
+            Forged by hand. <span className="text-primary">Backed by precision.</span>
+          </h1>
+        </div>
+      </section>
+
+      <section className="px-6 pb-24">
+        <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative">
+            <div className="absolute -inset-3 bg-primary/10 -z-10" />
+            <img src={shopImg} alt="Welding sparks in the Thor Fabrication shop" loading="lazy" width={1600} height={1100} className="w-full object-cover cut-corner" />
+          </div>
+          <div className="space-y-6">
+            <p className="text-xl text-foreground leading-relaxed">
+              Thor Fabrication is a working metal shop — not a middleman. We specialize in custom CNC plasma cutting, hands-on metal fabrication, and in-house powder coating.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              By combining precision digital cutting with old-school welding and a complete finishing line under one roof, we deliver a one-stop shop: design, cut, weld, and finish — without subcontracting any stage of the job out.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              That means tighter tolerances, faster turnarounds, and pieces that show the same attention to detail from the first cut to the final coat.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* MISSION */}
+      <section className="py-24 px-6 bg-card border-y border-border">
+        <div className="mx-auto max-w-5xl text-center">
+          <div className="font-display text-xs tracking-[0.3em] text-primary mb-6">/ MISSION</div>
+          <p className="font-display text-3xl md:text-5xl text-foreground leading-tight">
+            To deliver durable, precisely cut, and beautifully finished custom metalwork — <span className="text-primary">backed by craftsmanship and reliable turnaround.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* VALUES */}
+      <section className="py-24 px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className="font-display text-xs tracking-[0.3em] text-primary mb-3">/ WHAT WE STAND ON</div>
+          <h2 className="font-display text-5xl text-foreground mb-12">Three principles. <span className="text-primary">No shortcuts.</span></h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { t: "Built Strong", d: "Heavy-duty materials, full-penetration welds, and finishes that fight corrosion. Built for a working life — not a showroom." },
+              { t: "Engineered Right", d: "Precision CNC cutting from your digital file means parts that fit on the first try. Repeatable. Predictable. To spec." },
+              { t: "Made to Last", d: "Powder coating in-house means every piece leaves the shop weatherproofed and ready to install. No rust. No regrets." },
+            ].map((v, i) => (
+              <div key={v.t} className="relative bg-card border border-border p-10 cut-corner overflow-hidden group">
+                <div className="absolute top-0 right-0 font-display text-9xl text-primary/5 leading-none">0{i+1}</div>
+                <div className="h-1 w-12 bg-primary mb-6 group-hover:w-24 transition-all" />
+                <h3 className="font-display text-2xl text-foreground mb-3 relative">{v.t}</h3>
+                <p className="text-muted-foreground relative">{v.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EDGE */}
+      <section className="py-24 px-6 bg-card border-y border-border">
+        <div className="mx-auto max-w-7xl grid gap-12 lg:grid-cols-3">
+          <div className="lg:col-span-1">
+            <div className="font-display text-xs tracking-[0.3em] text-primary mb-3">/ THE EDGE</div>
+            <h2 className="font-display text-4xl text-foreground">Why customers come back.</h2>
+          </div>
+          <div className="lg:col-span-2 grid sm:grid-cols-2 gap-8">
+            {[
+              { t: "One Roof", d: "Cut, weld, blast, and coat — no handoffs to other shops." },
+              { t: "Quick Quotes", d: "Send a file or a sketch. Get a real number, fast." },
+              { t: "Flexible Mix", d: "From one-off ornamental gates to repeatable cut-part runs." },
+              { t: "Honest Pricing", d: "$100/shop hour. 5× material on cuts. Simple math, no surprises." },
+            ].map((e) => (
+              <div key={e.t} className="border-l-2 border-primary pl-6">
+                <h3 className="font-display text-xl text-foreground">{e.t}</h3>
+                <p className="text-muted-foreground mt-2 text-sm">{e.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 px-6">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="font-display text-5xl md:text-6xl text-foreground">Let's build something <span className="text-primary">that lasts.</span></h2>
+          <Link to="/contact" className="mt-10 inline-flex items-center gap-3 bg-primary px-10 py-5 font-display tracking-widest text-primary-foreground hover:brightness-110 transition cut-corner">
+            Get in Touch <span>→</span>
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}
